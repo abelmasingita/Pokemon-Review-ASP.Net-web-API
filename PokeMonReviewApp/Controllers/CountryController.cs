@@ -50,7 +50,25 @@ namespace PokeMonReviewApp.Controllers
             {
                 return BadRequest();
             }
-            return Ok(country);    
+            return Ok(country);
         }
+
+        [HttpGet("/owners/{ownerId}")]
+        [ProducesResponseType(200, Type = typeof(Country))]
+        [ProducesResponseType(400)]
+        public IActionResult GetCountryOfAnOwner(int ownerId)
+        {
+            var country = _mapper.Map<CountryDto>(_countryRepository.GetOwnersFromACountry(ownerId));
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            return Ok(country);
+        }
+
+
+
     }
 }

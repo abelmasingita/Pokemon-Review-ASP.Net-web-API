@@ -11,6 +11,9 @@ namespace PokeMonReviewApp.Helper
             CreateMap<Pokemon, PokemonDto>();
             CreateMap<Category, CategoryDto>();
             CreateMap<Country, CountryDto>();
+            CreateMap<Owner, OwnerDto>();
+            CreateMap<Review, ReviewsDto>();
+            CreateMap<Reviewer, ReviwerDto>();
         }
     }
 }
