@@ -20,6 +20,12 @@ namespace PokeMonReviewApp.Repositories
             return Save();
         }
 
+        public bool DeleteReviewer(Reviewer reviewer)
+        {
+            _dataContext.Remove(reviewer);
+            return Save();
+        }
+
         public Reviewer GetReviewer(int reviewerid)
         {
             return _dataContext.Reviewers.Where(r => r.Id == reviewerid).Include(e => e.Reviews).FirstOrDefault();
@@ -45,6 +51,12 @@ namespace PokeMonReviewApp.Repositories
             var saved = _dataContext.SaveChanges();
 
             return saved > 0 ? true : false;
+        }
+
+        public bool UpdateReviewer(Reviewer reviewer)
+        {
+            _dataContext.Update(reviewer);
+            return Save();
         }
     }
 }
