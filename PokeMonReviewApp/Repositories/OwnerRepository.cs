@@ -13,6 +13,13 @@ namespace PokeMonReviewApp.Repositories
             _context = context;
         }
 
+        public bool CreateOwner(Owner owner)
+        {
+
+            _context.Add(owner);
+            return Save();  
+        }
+
         public Owner GetOwner(int id)
         {
             return _context.Owners.Where(o => o.Id == id).FirstOrDefault();
@@ -36,6 +43,13 @@ namespace PokeMonReviewApp.Repositories
         public bool OwnerExists(int id)
         {
             return _context.Owners.Any(o => o.Id == id);
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+
+            return saved > 0 ? true : false;
         }
     }
 }
